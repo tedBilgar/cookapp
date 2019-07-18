@@ -173,6 +173,28 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.TTF</include>
+                    <include>**/*.png</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.docx</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <!--Для удобного вытягивания значений из пом файла например ${project.artifactId}
                 Пример https://www.hascode.com/2013/09/filtering-source-files-using-the-templating-maven-plugin/
@@ -311,6 +333,58 @@
 
         </plugins>
     </build>
+
+
+    <!--ПРОФИЛИ-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <dependencies>
+
+            </dependencies>
+            <build>
+                <plugins>
+
+                </plugins>
+            </build>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+                <type>DEV</type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <type>PROD</type>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!--Данный плагин исключительно для примера-->
+                    <!--<plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            &lt;!&ndash;Будут вып&ndash;&gt;
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>-->
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>
