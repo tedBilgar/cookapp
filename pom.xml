@@ -15,6 +15,8 @@
         <lombok.version>1.18.4</lombok.version>
         <hibernate.version>5.4.2.Final</hibernate.version>
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+        <version.surefire.plugin>2.22.1</version.surefire.plugin>
 
         <!--для сборки мавена-->
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -174,6 +176,7 @@
         <plugins>
             <!--Для удобного вытягивания значений из пом файла например ${project.artifactId}
                 Пример https://www.hascode.com/2013/09/filtering-source-files-using-the-templating-maven-plugin/
+                Можно использовать как темплейт
             -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -190,6 +193,46 @@
                 </executions>
             </plugin>
 
+            <!--Перед сборкой проекта копируем рерурсы и проперти в target дир.
+                Описание: http://java-online.ru/maven-plugins.xhtml
+                Можно использовать как темплейт, если расположение ресурсов то же и target дира
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>default-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/classes</outputDirectory>
+                            <useDefaultDelimiters>false</useDefaultDelimiters>
+                            <delimiters>
+                                <delimiter>#</delimiter>
+                            </delimiters>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                        <include>**/*.properties</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--Плагин для компилятора
+                Можно использовать как темплейт, или заменить значения версий компилятора на другие (обычно Java 8)
+                Собирается вместе с ломбок, мапстракт и хипренейт (можно убирать выборочно).
+                -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${version.compiler.plugin}</version>
@@ -217,6 +260,54 @@
                 </configuration>
             </plugin>
 
+            <!--Плагин для сборки WAR
+                Все веб ресурсы которы указываются -> будут в корне самого WAR
+                Использовать в данном виде, если веб ресурсы находятся в данной директории
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warSourceDirectory>build</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>WEB-INF/**</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <!--Плагин для удаления файлов при mvn clean
+                Можно использовать как темплейт для данной дир. build
+            -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/build</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!--Плагин для включения тестов JUNIT или TESTNG во время фазы test
+                Опсание https://stackoverflow.com/questions/32942389/what-is-the-use-of-maven-surefire-plugin
+            -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version.surefire.plugin}</version>
+            </plugin>
 
         </plugins>
     </build>
