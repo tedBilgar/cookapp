@@ -193,6 +193,7 @@
                     <include>**/*.docx</include>
                 </includes>
             </resource>
+
         </resources>
 
         <plugins>
@@ -223,7 +224,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.1.0</version>
-                <executions>
+               <!-- <executions>
                     <execution>
                         <id>default-resources</id>
                         <phase>validate</phase>
@@ -248,7 +249,7 @@
                             </resources>
                         </configuration>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
 
             <!--Плагин для компилятора
