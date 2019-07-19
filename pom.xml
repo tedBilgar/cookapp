@@ -17,6 +17,7 @@
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
         <version.surefire.plugin>2.22.1</version.surefire.plugin>
+        <jackson.version>2.9.7</jackson.version>
 
         <!--для сборки мавена-->
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -142,6 +143,13 @@
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging</artifactId>
                 <version>3.3.0.Final</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
             <!--Lombok-->
@@ -378,14 +386,13 @@
             </build>
             <properties>
                 <spring.profiles.active>dev</spring.profiles.active>
-                <type>DEV</type>
             </properties>
         </profile>
 
         <profile>
             <id>prod</id>
             <properties>
-                <type>PROD</type>
+                <spring.profiles.active>prod</spring.profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
