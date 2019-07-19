@@ -173,6 +173,9 @@
 
 
     <build>
+        <!--Указываем ресуры всегда
+            Можно использовать как темплейт для данный путей
+            -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -224,6 +227,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.1.0</version>
+                <!--Выполнение копирования ресурсов на стадии валидации означает, что
+                    компилятор не успеет подставить значения параметров например в properties.
+                    Необходимо убрать если нужно вставлять значения в проперти.
+                -->
                <!-- <executions>
                     <execution>
                         <id>default-resources</id>
@@ -337,6 +344,7 @@
 
 
     <!--ПРОФИЛИ-->
+    <!--mvn .... .... -Pdev(prod) -->
     <profiles>
         <profile>
             <id>dev</id>
