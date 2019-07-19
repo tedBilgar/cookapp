@@ -9,6 +9,9 @@ import java.util.Properties;
 
 /**
  * Конифигурация для дата соурса
+ *
+ * Менять:
+ * - getDataSource
  * */
 @Configuration
 public class DatasourceConfig {

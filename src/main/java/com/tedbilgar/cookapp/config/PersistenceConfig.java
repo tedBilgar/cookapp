@@ -16,6 +16,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Конфигурация работы с репозиториями
+ * Менять:
+ * - EnableJpaRepositories(value)
+ * - setPackagesToScan (value)
+ * */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(value = "com.tedbilgar.cookapp.repos")
