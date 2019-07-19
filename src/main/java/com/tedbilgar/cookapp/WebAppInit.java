@@ -1,6 +1,7 @@
 package com.tedbilgar.cookapp;
 
 import com.tedbilgar.cookapp.config.AppConfig;
+import com.tedbilgar.cookapp.config.WebAppConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -21,7 +22,7 @@ public class WebAppInit implements WebApplicationInitializer {
         servletContext.addListener(new ContextLoaderListener(rootContext));
 
         AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
-        //servletAppContext.register(WebMvcConfig.class); // Сюда ложим классы MVC WEB
+        servletAppContext.register(WebAppConfig.class); // Сюда ложим классы MVC WEB
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(servletAppContext);
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);

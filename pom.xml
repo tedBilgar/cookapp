@@ -170,12 +170,25 @@
 
     </dependencies>
 
+    <!--Необходим для создания entityManagerFactory-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>5.1.5.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <build>
         <!--Указываем ресуры всегда
             Можно использовать как темплейт для данный путей
             -->
+        <finalName>cookapp</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

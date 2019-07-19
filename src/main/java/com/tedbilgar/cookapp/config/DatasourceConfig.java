@@ -20,7 +20,7 @@ public class DatasourceConfig {
     public DataSource dataSource(){
         JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
         dataSourceLookup.setResourceRef(true);
-        DataSource dataSource = dataSourceLookup.getDataSource("CookAppPool");
+        DataSource dataSource = dataSourceLookup.getDataSource("jdbc/cookapp_db");
         return dataSource;
     }
 
