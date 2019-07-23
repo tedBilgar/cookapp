@@ -152,7 +152,9 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!--Чтобы не ругался после начальной конфигурации-->
+            <!--Чтобы не ругался после начальной конфигурации
+                нужен как база для парсинга HTTP запроса с закодированным фалом в теле запроса
+            -->
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>

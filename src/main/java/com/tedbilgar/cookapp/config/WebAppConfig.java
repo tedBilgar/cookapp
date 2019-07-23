@@ -17,6 +17,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * Необходимые бины для работы с сетью
+ * и ресурами в ней
+ *
+ * Сканит папку WEB
+ * */
 @Configuration
 @EnableWebMvc
 @EnableSpringDataWebSupport
