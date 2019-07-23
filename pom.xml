@@ -138,18 +138,25 @@
                 <version>1.7.25</version>
             </dependency>
 
-            <!--Нужен вместе с WEB-INF/glassfish-web.xml для того, чтобы glassfish не ругался на jboss logging-->
+            <!--Нужен вместе с WEB-INF/glassfish-web.xml для того, чтобы glassfish не ругался на jboss logging после начальной конфигурации-->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging</artifactId>
                 <version>3.3.0.Final</version>
             </dependency>
 
-
+            <!--Чтобы не ругался после начальной конфигурации-->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <!--Чтобы не ругался после начальной конфигурации-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.4</version>
             </dependency>
 
             <!--Lombok-->

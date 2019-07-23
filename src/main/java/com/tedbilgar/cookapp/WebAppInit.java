@@ -16,7 +16,7 @@ public class WebAppInit implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
-        servletContext.setInitParameter("spring.profiles.active", "${spring.profiles.active}");
+        //servletContext.setInitParameter("spring.profiles.active", "${spring.profiles.active}");
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(AppConfig.class);// Сюда ложим классы App и Security
         servletContext.addListener(new ContextLoaderListener(rootContext));
@@ -30,7 +30,7 @@ public class WebAppInit implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("spring-api", dispatcherServlet);
         dispatcher.setLoadOnStartup(1);
         dispatcher.setAsyncSupported(true);
-        dispatcher.addMapping("/rest/*");
+        dispatcher.addMapping("/rest/*"); //весь рест domain:8080/appName/rest/.....
 
         FilterRegistration.Dynamic springSecurityFilter = servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"));
         springSecurityFilter.addMappingForUrlPatterns(null, false, "/*");
