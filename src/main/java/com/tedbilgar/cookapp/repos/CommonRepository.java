@@ -6,11 +6,12 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * Необходимый общий репозиторий для работы
- * с сущностями из БД для любого проекта
- * .
+ * с сущностями из БД для любого проекта.
+ *
  * JPARepo необходима для CRUD + Page запросов
  *
- * JPASpecExec необходим для создания собственный запросов с Criteria API
+ * JPASpecExec необходим для создания собственных запросов с Criteria API
+ *
  * */
 
 @NoRepositoryBean
