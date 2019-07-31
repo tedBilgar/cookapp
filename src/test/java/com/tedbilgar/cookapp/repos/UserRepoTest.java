@@ -2,6 +2,8 @@ package com.tedbilgar.cookapp.repos;
 
 import com.tedbilgar.cookapp.entities.UserEntity;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,37 @@ public class UserRepoTest {
     @Autowired
     private UserRepository userRepository;
 
+    @Before
+    public void before(){
+        userRepository.save(
+                UserEntity.builder()
+                    .id(1L)
+                    .login("TestLogin")
+                    .firstName("Test")
+                    .secondName("Testov")
+                    .occupation("Programming")
+                    .build()
+        );
+        userRepository.save(
+                UserEntity.builder()
+                    .id(2L)
+                    .login("TestLogin2")
+                    .firstName("Test2")
+                    .secondName("Testov2")
+                    .occupation("Football")
+                    .build()
+        );
+        userRepository.save(
+                UserEntity.builder()
+                    .id(3L)
+                    .login("TestLogin3")
+                    .firstName("Tes3t")
+                    .secondName("Testov3")
+                    .occupation("Healing")
+                    .build()
+        );
+    }
+
     @Test
     public void createUserTest() throws Exception{
         assertNotNull(userRepository.save(new UserEntity()));
@@ -32,7 +65,7 @@ public class UserRepoTest {
 
     @Test
     public void findUserTest() throws Exception{
-        assertNotNull(userRepository.findById(100L));
+        assertNotNull(userRepository.findById(1L));
     }
 
     @Test
@@ -43,9 +76,8 @@ public class UserRepoTest {
 
     @Test
     public void findByIdTest() throws Exception{
-        UserEntity userEntity = userRepository.save(new UserEntity());
-        UserEntity userEntityFromDB = userRepository.findById(userEntity.getId()).orElseThrow(RuntimeException::new);
-        assertEquals(userEntity.getId(), userEntityFromDB.getId());
+        UserEntity userEntityFromDB = userRepository.findById(2L).orElseThrow(RuntimeException::new);
+        assertEquals(userRepository.findById(2L).orElseThrow(RuntimeException::new).getId(), userEntityFromDB.getId());
     }
 
     @Test
