@@ -59,8 +59,6 @@ public class UserRepositoryCustomTest {
 
     @Test
     public void findUsersByFirstNameAndSecondNameTest() throws Exception{
-        userRepository.save(UserEntity.builder().firstName("Test").secondName("Testov").build());
-
         List<UserEntity> userEntity = userRepositoryCustom.findUsersByFirstNameAndSecondName("Test","st");
         assertFalse(userEntity.isEmpty());
     }

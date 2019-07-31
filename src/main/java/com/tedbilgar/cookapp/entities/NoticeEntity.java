@@ -1,6 +1,7 @@
 package com.tedbilgar.cookapp.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "NOTICE")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class NoticeEntity {
 
     @Id
@@ -23,4 +25,5 @@ public class NoticeEntity {
 
     @Column(name = "body")
     private String body;
+
 }

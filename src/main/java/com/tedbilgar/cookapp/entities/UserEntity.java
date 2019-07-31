@@ -31,4 +31,5 @@ public class UserEntity {
 
     @Column(name = "occupation")
     private String occupation;
+
 }
