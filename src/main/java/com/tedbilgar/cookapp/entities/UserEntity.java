@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -31,5 +32,16 @@ public class UserEntity {
 
     @Column(name = "occupation")
     private String occupation;
+
+    /**
+     * Связь Многие-Ко-Многим с таблицей Notice
+     * USER <-> NOTICE
+     * Обязательно делаем Lazy, если объем данных в таблице будет действительно большой >1000 записей
+     * */
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "USERS_NOTICE_RELATION",
+                joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")},
+                inverseJoinColumns = { @JoinColumn(name = "notice_id", referencedColumnName = "id") })
+    private Set<NoticeEntity> noticeEntitySet;
 
 }

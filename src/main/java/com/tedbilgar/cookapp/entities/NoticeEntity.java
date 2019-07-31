@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -25,5 +27,8 @@ public class NoticeEntity {
 
     @Column(name = "body")
     private String body;
+
+    @ManyToMany(mappedBy = "noticeEntitySet")
+    private Set<UserEntity> users = new HashSet<>();
 
 }
