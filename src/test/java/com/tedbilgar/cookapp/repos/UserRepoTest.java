@@ -38,7 +38,25 @@ public class UserRepoTest {
     @Test
     public void deleteUserTest() throws Exception{
         UserEntity userEntity = userRepository.save(new UserEntity());
-        System.out.println(userEntity.getId());
         userRepository.delete(userEntity);
+    }
+
+    @Test
+    public void findByIdTest() throws Exception{
+        UserEntity userEntity = userRepository.save(new UserEntity());
+        UserEntity userEntityFromDB = userRepository.findById(userEntity.getId()).orElseThrow(RuntimeException::new);
+        assertEquals(userEntity.getId(), userEntityFromDB.getId());
+    }
+
+    @Test
+    public void findByLoginTest() throws Exception{
+        UserEntity userEntity = userRepository.save(UserEntity.builder().login("Test").build());
+        assertNotNull(userRepository.findByLogin(userEntity.getLogin()).orElseThrow(RuntimeException::new));
+    }
+
+    @Test
+    public void existByIdTest()throws Exception{
+        UserEntity userEntity = userRepository.save(new UserEntity());
+        assertTrue(userRepository.existsById(userEntity.getId()));
     }
 }
