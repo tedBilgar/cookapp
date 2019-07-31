@@ -1,15 +1,15 @@
 package com.tedbilgar.cookapp.repos.ext;
 
+import com.tedbilgar.cookapp.entities.NoticeEntity;
+import com.tedbilgar.cookapp.entities.NoticeEntity_;
 import com.tedbilgar.cookapp.entities.UserEntity;
+import com.tedbilgar.cookapp.entities.UserEntity_;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
@@ -46,4 +46,27 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
 
         return query.getResultList();
     }
+
+    @Override
+    public List<UserEntity> findUsersByNoticeHeader(String noticeHeader) {
+
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<UserEntity> criteriaQuery = criteriaBuilder.createQuery(UserEntity.class);
+        Root<UserEntity> user = criteriaQuery.from(UserEntity.class);
+
+        /**
+         * Находим всех юзеров, которые имеют Notice, которые хотя бы частью LIKE схожи с входным параметром
+         * */
+        SetJoin<UserEntity, NoticeEntity> join = user.join(UserEntity_.noticeEntitySet);
+        criteriaQuery.select(user)
+                    .where(
+                            criteriaBuilder.like(join.get(NoticeEntity_.header), "%" + noticeHeader + "%")
+                    );
+
+        TypedQuery<UserEntity> typedQuery = em.createQuery(criteriaQuery);
+
+        return typedQuery.getResultList();
+    }
+
+
 }

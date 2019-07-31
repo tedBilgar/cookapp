@@ -1,17 +1,13 @@
 package com.tedbilgar.cookapp.repos;
 
 import com.tedbilgar.cookapp.entities.UserEntity;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -91,4 +87,5 @@ public class UserRepoTest {
         UserEntity userEntity = userRepository.save(new UserEntity());
         assertTrue(userRepository.existsById(userEntity.getId()));
     }
+
 }

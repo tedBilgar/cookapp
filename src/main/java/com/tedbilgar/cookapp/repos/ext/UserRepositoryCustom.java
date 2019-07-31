@@ -12,5 +12,5 @@ import java.util.List;
 public interface UserRepositoryCustom {
 
     List<UserEntity> findUsersByFirstNameAndSecondName(String firstName, String secondName);
-
+    List<UserEntity> findUsersByNoticeHeader(String noticeHeader);
 }
