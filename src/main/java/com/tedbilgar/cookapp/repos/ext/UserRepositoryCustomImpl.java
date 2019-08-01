@@ -56,6 +56,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
 
         /**
          * Находим всех юзеров, которые имеют Notice, которые хотя бы частью LIKE схожи с входным параметром
+         * Связь между Users и Notice - Many To Many
          * */
         SetJoin<UserEntity, NoticeEntity> join = user.join(UserEntity_.noticeEntitySet);
         criteriaQuery.select(user)
