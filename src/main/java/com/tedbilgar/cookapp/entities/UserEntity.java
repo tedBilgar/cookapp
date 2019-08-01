@@ -1,9 +1,6 @@
 package com.tedbilgar.cookapp.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -38,7 +35,7 @@ public class UserEntity {
      * USER <-> NOTICE
      * Обязательно делаем Lazy, если объем данных в таблице будет действительно большой >1000 записей
      * */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "USERS_NOTICE_RELATION",
                 joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")},
                 inverseJoinColumns = { @JoinColumn(name = "notice_id", referencedColumnName = "id") })

@@ -59,6 +59,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom{
          * */
         SetJoin<UserEntity, NoticeEntity> join = user.join(UserEntity_.noticeEntitySet);
         criteriaQuery.select(user)
+                    .distinct(true)
                     .where(
                             criteriaBuilder.like(join.get(NoticeEntity_.header), "%" + noticeHeader + "%")
                     );
