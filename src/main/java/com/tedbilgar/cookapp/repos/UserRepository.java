@@ -3,6 +3,8 @@ package com.tedbilgar.cookapp.repos;
 import com.tedbilgar.cookapp.entities.UserEntity;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
