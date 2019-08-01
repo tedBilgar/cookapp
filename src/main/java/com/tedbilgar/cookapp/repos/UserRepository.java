@@ -11,6 +11,7 @@ public interface UserRepository extends CommonRepository<UserEntity,Long> {
 
     Optional<UserEntity> findById(Long userId);
     Optional<UserEntity> findByLogin(String login);
+    Optional<UserEntity> findByOccupationLike(String occupation);
 
     boolean existsById(Long userId);
 

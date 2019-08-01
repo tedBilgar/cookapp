@@ -13,6 +13,8 @@ public class UserDTO {
 
     private Long id;
     private String login;
-    private String fullName;
+    private String firstName;
+    private String secondName;
     private String occupation;
+
 }
