@@ -19,6 +19,8 @@ public class TestService {
     private UserMapper userMapper;
 
     public UserDTO getUserEnteties(){
-        return userMapper.userEntityToUserDto(UserEntity.builder().id(2L).login("test").build());
+        return userMapper.userEntityToUserDto(UserEntity.builder().id(2L).login("test")
+                .firstName("Test")
+                .secondName("Testov").build());
     }
 }

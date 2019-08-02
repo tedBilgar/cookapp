@@ -39,5 +39,10 @@ public class MapperTest {
         UserDTO userDTO = userMapper.userEntityToUserDto(userEntity);
 
         assertEquals(userEntity.getLogin(), userDTO.getLogin());
+        assertEquals(userEntity.getFirstName() + " " + userEntity.getSecondName(), userDTO.getFullName());
+
+        UserEntity userEntityReverse = userMapper.userDtoToUserEntity(userDTO);
+        assertEquals(userDTO.getLogin(), userEntityReverse.getLogin());
+        assertEquals(userEntityReverse.getFirstName(), userEntity.getFirstName());
     }
 }
