@@ -2,6 +2,7 @@ package com.tedbilgar.cookapp.web.controllers;
 
 import com.tedbilgar.cookapp.entities.UserEntity;
 import com.tedbilgar.cookapp.services.TestService;
+import com.tedbilgar.cookapp.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class TestController {
     private TestService testService;
 
     @GetMapping("t1")
-    public ResponseEntity<List<UserEntity>> getString(){
+    public ResponseEntity<UserDTO> getString(){
         return ResponseEntity.ok(testService.getUserEnteties());
     }
 }
