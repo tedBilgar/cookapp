@@ -15,6 +15,6 @@ public class UserDTO {
     private String login;
     private String firstName;
     private String secondName;
-    private String occupation;
+    private String occupationDTO;
 
 }
