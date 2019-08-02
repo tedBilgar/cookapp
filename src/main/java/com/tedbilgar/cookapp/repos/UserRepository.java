@@ -4,6 +4,7 @@ import com.tedbilgar.cookapp.entities.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.awt.print.Pageable;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -11,7 +12,7 @@ public interface UserRepository extends CommonRepository<UserEntity,Long> {
 
     Optional<UserEntity> findById(Long userId);
     Optional<UserEntity> findByLogin(String login);
-    Optional<UserEntity> findByOccupationLike(String occupation);
+    Optional<List<UserEntity>> findByOccupationLike(String occupation);
 
     boolean existsById(Long userId);
 
