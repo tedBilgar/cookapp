@@ -17,7 +17,7 @@
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
         <version.surefire.plugin>2.22.1</version.surefire.plugin>
-        <jackson.version>2.9.7</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
 
         <!--для сборки мавена-->
         <maven.compiler.target>1.8</maven.compiler.target>
